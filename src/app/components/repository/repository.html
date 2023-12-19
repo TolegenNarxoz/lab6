@@ -1,0 +1,42 @@
+
+<section>
+  <h2>Create Repository</h2>
+  <div>
+    <label for="newRepositoryName">Name:</label>
+    <input type="text" id="newRepositoryName" [(ngModel)]="newRepositoryName" />
+  </div>
+  <div class="form-group">
+    <label for="newRepositoryDescription">Description:</label>
+    <input type="text" id="newRepositoryDescription" [(ngModel)]="newRepositoryDescription" />
+  </div>
+  <button type="button" (click)="createRepository()">Create Repository</button>
+</section>
+
+
+<section>
+  <h2>Repositories</h2>
+  <ul>
+    <li *ngFor="let repository of repositories" >
+      <div>
+        <div>
+          <h5>{{ repository.name }}</h5>
+          <p>{{ repository.description }}</p>
+        </div>
+        <div>
+          <button (click)="onDeleteRepository(repository.owner.login, repository.name)">Delete</button>
+          <button (click)="toggleUpdateForm(repository.name)">Edit</button>
+        </div>
+      </div>
+      <div *ngIf="showUpdateForm[repository.name]" style="margin-top: 1rem;">
+        <form (submit)="updateObject(repository.owner.login, repository.name)">
+          <div>
+            <label>New Description:</label>
+            <input [(ngModel)]="changes[repository.name].description" placeholder="New Description">
+          </div>
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</section>
+

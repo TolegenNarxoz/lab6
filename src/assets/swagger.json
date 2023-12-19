@@ -1,0 +1,16 @@
+import { Component, OnInit } from '@angular/core';
+import SwaggerUI from 'swagger-ui';
+
+@Component({
+  selector: 'app-swagger',
+  template: '<div id="swagger-ui"></div>',
+  styleUrls: ['./swagger.component.css']
+})
+export class SwaggerComponent implements OnInit {
+  ngOnInit(): void {
+    SwaggerUI({
+      dom_id: '#swagger-ui',
+      url: 'assets/swagger.json', // Путь к вашему файлу Swagger JSON
+    });
+  }
+}
